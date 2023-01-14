@@ -1,0 +1,43 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+
+model Department {
+  id String @id @default(uuid())
+  name String @db.VarChar(255)
+  employees Employee[]
+}
+
+model Employee{
+  id String @id @default(uuid())
+  fullName String @db.VarChar(255)
+  email String @unique @db.VarChar(255)
+  phone String @db.VarChar(255)
+  gender Gender @default(Male)
+  password String @db.VarChar(255)
+  userType UserType @default(Staff)
+  dateOfBirth DateTime 
+  department Department? @relation(fields: [departmentId], references: [id])
+  departmentId String?
+}
+
+enum Gender{
+  Male
+  Female
+}
+
+enum UserType{
+  Admin
+  Management
+  Staff
+
+}
