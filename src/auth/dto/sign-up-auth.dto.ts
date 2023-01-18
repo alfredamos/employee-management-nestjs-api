@@ -11,8 +11,8 @@ export class SignupDto {
   @IsString()
   @IsNotEmpty()
   phone: string;
+  @IsOptional()
   @IsEnum(Gender)
-  @IsNotEmpty()
   gender: Gender;
   @IsEnum(UserType)
   @IsNotEmpty()

@@ -93,8 +93,8 @@ export class AuthService {
     //----> Check the type of date of birth.
     const dateOfBirth = changeProfileDto.dateOfBirth;
 
-    if (typeof dateOfBirth === "string"){
-        changeProfileDto.dateOfBirth = new Date(dateOfBirth)
+    if (typeof dateOfBirth === 'string') {
+      changeProfileDto.dateOfBirth = new Date(dateOfBirth);
     }
 
     const updatedEmployeeProfile = await this.prisma.employee.update({
